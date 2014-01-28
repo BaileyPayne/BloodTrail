@@ -1,0 +1,36 @@
+
+package me.baileypayne.bloodtrail;
+
+import org.bukkit.Effect;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+
+/**
+ *
+ * @author Bailey
+ */
+class PlayerListener implements Listener {
+    
+    private BloodTrail plugin;
+
+    public PlayerListener(BloodTrail aThis) {
+        this.plugin = aThis;
+    }
+    @EventHandler
+    public void onEntityDamageEvent(EntityDamageEvent event){
+        Player player = (Player) event.getEntity();
+        if(event.getEntityType() == EntityType.PLAYER){
+        if(event.getCause() == DamageCause.ENTITY_ATTACK){
+                   player.getWorld().playEffect(player.getLocation(), Effect.MOBSPAWNER_FLAMES , 1);
+            }
+            
+        }
+        
+    }
+    
+    
+}
